@@ -1,14 +1,5 @@
-/***************************************/
-/* Multiboard Firmware                 */
-/*                                     */
-/* Todos:                              */
-/* Frequenz wir nur unteres Byte zurück gegeben                                    */
-/*                                     */
-/* Autor: Candeias                     */
-/* Bartels Mikrotechnik GmbH           */
-/***************************************/
 
-#define SOFTWARE_VERSION  "Multiboard v1.20211102"
+#define SOFTWARE_VERSION  "Pocket LoC Pump Controller Firmware v2"
 uint8_t bBoardversion = 0;
 
 #include <Wire.h>

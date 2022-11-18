@@ -65,7 +65,7 @@ void Driver_setvoltage(uint8_t _v1, uint8_t _v2, uint8_t _v3, uint8_t _v4) {
   }  
 }
 
-void Driver_switchOff(uint8_t _pump=0) {
+void Driver_switchOff(uint8_t _pump) {
   switch (current_driver) {
     case DRIVER_NONE:
       break;

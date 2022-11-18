@@ -1,6 +1,3 @@
-#include <SoftwareSerial.h>
-
-SoftwareSerial btSerial(5, 4); // RX, TX
 
 char Buffer_Data[50];
 uint8_t strPointer=0;
@@ -13,54 +10,36 @@ uint16_t temp_1=0;
 
 void Serial_init() {
   Serial.begin(9600);
-  btSerial.begin(9600);  
   strPointer=0;
   Buffer_Data[strPointer]=0;
 }
 
 void Serial_println(const char str[]) {
   Serial.println(str);
-  btSerial.println(str);
 }
 void Serial_print(const char str[]) {
   Serial.print(str);
-  btSerial.print(str);
 }
 
 void Serial_println(unsigned char val, int base = DEC) {
   Serial.println(val,base);
-  btSerial.println(val,base);
 }
 
 void Serial_print(unsigned char val, int base = DEC) {
   Serial.print(val,base);
-  btSerial.print(val,base);
 }
 
 void Serial_println(int val, int base = DEC) {
   Serial.println(val,base);
-  btSerial.println(val,base);
 }
 
 void Serial_print(int val, int base = DEC) {
   Serial.print(val,base);
-  btSerial.print(val,base);
 }
-
-/*void Serial_println(float f) {
-  Serial.println(f);
-  btSerial.println(f);
-}*/
 
 void Serial_input() {
   while ((Serial.available() > 0) && (strPointer<50)) {
     Buffer_Data[strPointer] = Serial.read();
-    if ((Buffer_Data[strPointer]>='a') && (Buffer_Data[strPointer]<='z')) Buffer_Data[strPointer]+='A'-'a';  //Großbuchstaben
-    strPointer++;
-    Buffer_Data[strPointer]=0;
-  }
-  while ((btSerial.available() > 0) && (strPointer<50)) {
-    Buffer_Data[strPointer] = btSerial.read();
     if ((Buffer_Data[strPointer]>='a') && (Buffer_Data[strPointer]<='z')) Buffer_Data[strPointer]+='A'-'a';  //Großbuchstaben
     strPointer++;
     Buffer_Data[strPointer]=0;
