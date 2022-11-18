@@ -1,0 +1,4 @@
+Record=TopLevelDocument|FileName=Main.SchDoc|SheetNumber=1
+Record=SheetSymbol|SourceDocument=Main.SchDoc|Designator=U_ATMega32U4|SchDesignator=U_ATMega32U4|FileName=ATMega32U4.SchDoc|SheetNumber=2|SymbolType=Normal|RawFileName=ATMega32U4.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=Main.SchDoc|Designator=U_Highdriver|SchDesignator=U_Highdriver|FileName=Highdriver.SchDoc|SheetNumber=4|SymbolType=Normal|RawFileName=Highdriver.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=Main.SchDoc|Designator=U_USB|SchDesignator=U_USB|FileName=USB.SchDoc|SheetNumber=3|SymbolType=Normal|RawFileName=USB.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
