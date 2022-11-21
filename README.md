@@ -10,6 +10,14 @@ The pump controller for the Pocket LoC is designed as an interface for the [Bart
 
 The mp-Highdriver4 and four micropumps (mp6-liq) can be plugged directly into the controller to achieve a compact form factor.
 
+### Components
+
+Prices are estimates of current prices:
+- PCB 25-50€ (depends on manufacturer)
+- Circuit components (see Altium project for details) approx. 25€
+- [Bartels mp-Highdriver4](https://darwin-microfluidics.com/products/mp-highdriver4-pump-driver?variant=39540556791972) 159€
+- 4x [Bartels mp6-liq](https://darwin-microfluidics.com/products/bartels-mp6-micropump?variant=36928480837796) 128€
+
 ### PCB assembly
 
 All design files for the PCB can be found as an Altium project in the [hardware folder](https://github.com/Pocket-LoC/Pump-Controller/tree/main/Hardware). You can order the ready printed PCB from manufacturers like [JLCPCB](https://jlcpcb.com/) or [multi-cb](https://www.multi-circuit-boards.eu/en/index.html) and assemble it yourself (requires tools and skills for SMD assembly), order an assembled PCB or contact me.
