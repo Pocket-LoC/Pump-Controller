@@ -5,7 +5,7 @@ Lab-on-chip (LoC) technology is becoming increasingly relevant, especially in th
 Pocket LoC can be assembled with standard equipment found in a typcial engineering lab (such as a maker space or FabLab). Once assembled, Pocket LoC is fully portable and only needs a PC to operate.
 
 ## Pump Controller
-
+<img align = "right" src="https://user-images.githubusercontent.com/42568983/203098132-f614299e-b502-4ab6-b1cb-b079d1976eea.jpg" width="40%" /> 
 The pump controller for the Pocket LoC is designed as an interface for the [Bartels mp-Highdriver4](https://www.bartels-mikrotechnik.de/en/microelectronics/) and uses a microcontroller (Atmel ATmega32U4). The sensor can be operated like an Arduino with connected peripherals, making coding simple.
 
 The mp-Highdriver4 and four micropumps (mp6-liq) can be plugged directly into the controller to achieve a compact form factor.
