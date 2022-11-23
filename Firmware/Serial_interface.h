@@ -17,24 +17,12 @@ void Serial_init() {
 void Serial_println(const char str[]) {
   Serial.println(str);
 }
+
+void Serial_println(String str){
+  Serial.println(str);
+}
 void Serial_print(const char str[]) {
   Serial.print(str);
-}
-
-void Serial_println(unsigned char val, int base = DEC) {
-  Serial.println(val,base);
-}
-
-void Serial_print(unsigned char val, int base = DEC) {
-  Serial.print(val,base);
-}
-
-void Serial_println(int val, int base = DEC) {
-  Serial.println(val,base);
-}
-
-void Serial_print(int val, int base = DEC) {
-  Serial.print(val,base);
 }
 
 void Serial_input() {
@@ -57,70 +45,24 @@ void Serial_input() {
     Buffer_Data[strPointer]=0;
   } else if (strstr(Buffer_Data,"\r\n")>0)   {                        //Befehl wurde mit Return beendet
     if (Buffer_Data[0]=='P'){
-      if (Buffer_Data[1]=='1'){                                       // Erste Pumpe
+      if (Buffer_Data[1]=='1' || Buffer_Data[1]=='2' || Buffer_Data[1]=='3' || Buffer_Data[1]=='4'){ // Einzelne Pumpe
+        char raw[] = {Buffer_Data[1]}; //atoi needs this
+        uint8_t pump_no = atoi(raw);
         if(Buffer_Data[2]=='V'){                                      // Amplitude
           if(Buffer_Data[3]=='?'){                                    // Abfragen
-            Serial_println((bPumpState[0] ? nPumpVoltageDisplay[0] : 0));
-          } else {             
-            nPumpVoltageDisplay[0] = constrain(atoi(&Buffer_Data[3]),0,250);
-            Driver_setvoltage(1,nPumpVoltageDisplay[0]);
-            Serial_println("OK");
+            Serial_println((bPumpState[pump_no-1] ? nPumpVoltageDisplay[pump_no-1] : 0));
+          } else {             //Setzen
+            nPumpVoltageDisplay[pump_no-1] = constrain(atoi(&Buffer_Data[3]),0,250);
+            Driver_setvoltage(pump_no, nPumpVoltageDisplay[pump_no-1]);
+            Serial_println("OK, set pump " + String(pump_no));
           }
-        } else if(strcmp(&Buffer_Data[2],"ON\r\n")==0) {              // Erste Pumpe einschalten
-          Driver_switchOn(1);
+        } else if(strcmp(&Buffer_Data[2],"ON\r\n")==0) {              // Pumpe einschalten
+          Driver_switchOn(pump_no);
           Serial_println("OK");
-        } else if(strcmp(&Buffer_Data[2],"OFF\r\n")==0) {             // Erste Pumpe ausschalten
-          Driver_switchOff(1);
+        } else if(strcmp(&Buffer_Data[2],"OFF\r\n")==0) {             // Pumpe ausschalten
+          Driver_switchOff(pump_no);
           Serial_println("OK");
         } 
-      } else if (Buffer_Data[1]=='2'){                               // Zweite Pumpe
-        if(Buffer_Data[2]=='V'){                                     // Amplitude
-          if(Buffer_Data[3]=='?'){                                   // Abfragen
-            Serial_println((bPumpState[1] ? nPumpVoltageDisplay[1] : 0));
-          } else {                                                   // Setzen
-            nPumpVoltageDisplay[1] = constrain(atoi(&Buffer_Data[3]),0,250);
-            Driver_setvoltage(2,nPumpVoltageDisplay[1]);
-            Serial_println("OK");
-          }
-        } else if (strcmp(&Buffer_Data[2],"ON\r\n")==0) {              // Zweite Pumpe einschalten
-          Driver_switchOn(2);
-          Serial_println("OK");
-        } else if(strcmp(&Buffer_Data[2],"OFF\r\n")==0) {              // Zweite Pumpe ausschalten
-          Driver_switchOff(2);
-          Serial_println("OK");
-        }
-      } else if (Buffer_Data[1]=='3') {                                // Dritte Pumpe
-        if(Buffer_Data[2]=='V'){                                       // Amplitude
-          if(Buffer_Data[3]=='?'){                                     // Abfragen
-            Serial_println((bPumpState[2] ? nPumpVoltageDisplay[2] : 0));
-          } else {                                                     // Setzen
-            nPumpVoltageDisplay[2] = constrain(atoi(&Buffer_Data[3]),0,250);
-            Driver_setvoltage(3,nPumpVoltageDisplay[2]);
-            Serial_println("OK");
-          }
-        } else if(strcmp(&Buffer_Data[2],"ON\r\n")==0){                // Dritte Pumpe einschalten
-          Driver_switchOn(3);
-          Serial_println("OK");
-        } else if(strcmp(&Buffer_Data[2],"OFF\r\n")==0){               // Dritte Pumpe ausschalten
-          Driver_switchOff(3);
-          Serial_println("OK");
-        }
-      } else if (Buffer_Data[1]=='4'){                                 // Vierte Pumpe
-        if(Buffer_Data[2]=='V'){                                       // Amplitude
-          if(Buffer_Data[3]=='?'){                                     // Abfragen
-            Serial_println((bPumpState[3] ? nPumpVoltageDisplay[3] : 0));
-          } else {                                                     // Setzen
-            nPumpVoltageDisplay[3] = constrain(atoi(&Buffer_Data[3]),0,250);
-            Driver_setvoltage(4,nPumpVoltageDisplay[3]);
-            Serial_println("OK");
-          }
-        } else if(strcmp(&Buffer_Data[2],"ON\r\n")==0){                // Dritte Pumpe einschalten
-          Driver_switchOn(4);
-          Serial_println("OK");
-        } else if(strcmp(&Buffer_Data[2],"OFF\r\n")==0){               // Dritte Pumpe ausschalten
-          Driver_switchOff(4);
-          Serial_println("OK");
-        }
       } else if(Buffer_Data[1]=='A'){                            //Spannung für alle Pumpen Setzen (PA000#000#000#000)
         nPumpVoltageDisplay[0] = constrain(atoi(&Buffer_Data[2]),0,250);
         nPumpVoltageDisplay[1] = constrain(atoi(&Buffer_Data[6]),0,250);
@@ -147,13 +89,6 @@ void Serial_input() {
     } else if (strcmp(Buffer_Data,"V\r\n")==0) { 
       sprintf(str,"%s#%d",SOFTWARE_VERSION,bBoardversion);
       Serial_println(str);
-    } else if (strcmp(Buffer_Data,"#\r\n")==0) { 
-      Serial_print(nFrequencyByte,HEX);
-      Serial_print(nPumpVoltageByte[0],HEX);
-      Serial_print(nPumpVoltageByte[1],HEX);
-      Serial_print(nPumpVoltageByte[2],HEX);
-      Serial_print(nPumpVoltageByte[3],HEX);
-      Serial_println((bPumpState[0]?0x01:0)|(bPumpState[1]?0x02:0)|(bPumpState[2]?0x04:0)|(bPumpState[3]?0x08:0),HEX);
     } else if (strcmp(Buffer_Data,"SELECTQUADDRIVER\r\n")==0) {
       if (Driver_select(DRIVER_HIGHDRIVER4))
         Serial_println("OK");
@@ -164,7 +99,9 @@ void Serial_input() {
         Serial_println("OK");
       else
         Serial_println("FAIL");    
-    } else { 
+    } else if (strcmp(Buffer_Data, "ID\r\n")==0){
+      Serial_println("PocketLoCPumpController");
+    }else { 
       char *p = strstr(Buffer_Data,"\r\n"); *p=0;
       Serial_print("Wrong command (");
       Serial_print(Buffer_Data);
