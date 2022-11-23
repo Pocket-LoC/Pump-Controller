@@ -1,14 +1,23 @@
-# Pocket-LoC
+# Pocket LoC
 <img align = "right" src="https://user-images.githubusercontent.com/42568983/202521498-0bb95a05-1dd4-4db9-ad12-fc51b9aba1ed.jpg" width="40%" /> 
 Lab-on-chip (LoC) technology is becoming increasingly relevant, especially in the field of medicine. However, often LoC setups rely on complex lab equipment for operation. The aim of this project is to create an affordable and portable LoC setup as a proof-of-concept for truly pocket-sized LoC - the Pocket LoC.
 
 Pocket LoC can be assembled with standard equipment found in a typcial engineering lab (such as a maker space or FabLab). Once assembled, Pocket LoC is fully portable and only needs a PC to operate.
 
 ## Pump Controller
+<img align = "right" src="https://user-images.githubusercontent.com/42568983/203098132-f614299e-b502-4ab6-b1cb-b079d1976eea.jpg" width="40%" /> 
 
 The pump controller for the Pocket LoC is designed as an interface for the [Bartels mp-Highdriver4](https://www.bartels-mikrotechnik.de/en/microelectronics/) and uses a microcontroller (Atmel ATmega32U4). The sensor can be operated like an Arduino with connected peripherals, making coding simple.
 
 The mp-Highdriver4 and four micropumps (mp6-liq) can be plugged directly into the controller to achieve a compact form factor.
+
+### Components
+
+Prices are estimates of current prices:
+- PCB 25-50€ (depends on manufacturer)
+- Circuit components (see Altium project for details) approx. 25€
+- [Bartels mp-Highdriver4](https://darwin-microfluidics.com/products/mp-highdriver4-pump-driver?variant=39540556791972) 159€
+- 4x [Bartels mp6-liq](https://darwin-microfluidics.com/products/bartels-mp6-micropump?variant=36928480837796) 128€
 
 ### PCB assembly
 
