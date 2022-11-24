@@ -8,5 +8,5 @@ To run this code you will need to install Python (3.7+). Typically, it is easies
 
 Connect the Pocket LoC Pump Controller (with the [firmware](https://github.com/Pocket-LoC/Pump-Controller/tree/main/Firmware) loaded and four micropumps connected). The blue LED should be on.
 
-You can now run the Python code. The software will try to establish a connection to the first "Arduino Micro" it can find. This will only work reliably if no other Arduino Micro is connected to the PC (if you need to use multiple Arduinos in paralell set the correct port manually). It will then configure the controller and wait for input confirmation to start the droplet sample. The sample assumes that pump 1 provides a constant background flow and pump 2 through 4 are used to generate droplets.
+You can now run the Python code. The software will try to establish a connection to the first "Arduino Micro" that identifies as Pocket LoC pump controller. It will then configure the controller and wait for input confirmation to start the droplet sample. The sample assumes that pump 1 provides a constant background flow and pumps 2 through 4 are used to generate droplets. You will have to adjust the droplet timings and voltages for your specific application.
 
