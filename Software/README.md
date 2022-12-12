@@ -10,3 +10,5 @@ Connect the Pocket LoC Pump Controller (with the [firmware](https://github.com/P
 
 You can now run the Python code. The software will try to establish a connection to the first "Arduino Micro" that identifies as Pocket LoC pump controller. It will then configure the controller and wait for input confirmation to start the droplet sample. The sample assumes that pump 1 provides a constant background flow and pumps 2 through 4 are used to generate droplets. You will have to adjust the droplet timings and voltages for your specific application.
 
+### Bartels Multiboard App
+For a quick and simple test and operation of the pumps, you can use this applet provided by the pump manufacturer. Select the correct serial port (can be found in the systemd device manager) and the "Highdriver4". You can now set the driver frequency and control the individual pump voltages.
